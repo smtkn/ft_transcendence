@@ -1,9 +1,3 @@
-.bi {
-    display: inline-block;
-    width: 1rem;
-    height: 1rem;
-  }
-  
   /*
    * Sidebar
    */
@@ -25,7 +19,7 @@
   }
   
   .sidebar .nav-link.active {
-    color: #2470dc;
+    color: #006aff;
   }
   
   .sidebar-heading {
@@ -39,8 +33,8 @@
   .navbar-brand {
     padding-top: .75rem;
     padding-bottom: .75rem;
-    background-color: rgba(0, 0, 0, .25);
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+    background-color: rgba(0, 0, 0, 0 , 0);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0);
   }
   
   .navbar .form-control {
@@ -124,3 +118,14 @@
     display: block !important;
   }
   
+  .dasboard_profile:hover {
+    box-shadow: 0px 0px 8px 1px #ff0000 !important;
+  }
+
+  .side_bar_shadow {
+    box-shadow: rgba(0, 0, 0, 0.56) 25px 0px 90px 20px
+  }
+
+  .sidebar_h {
+    min-height: calc(100vh - 64px);
+  }
