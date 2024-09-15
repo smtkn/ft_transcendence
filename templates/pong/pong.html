@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong Oyunu</title>
+
+    <style>
+        canvas {
+            background: black;
+            display: block;
+            margin: 0 auto;
+        }
+        #score {
+            text-align: center;
+            font-size: 24px;
+            color: black;
+        }
+        #menu {
+            text-align: center;
+            font-size: 24px;
+            color: white;
+            margin-top: 20px;
+        }
+        #menu button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="menu">
+    <div>Select Difficulty:</div>
+    <button onclick="startGame()">Start Game</button>
+</div>
+
+<div id="score" style="display: none;">Score: <span id="playerScore">0</span> - <span id="cpuScore">0</span></div>
+<canvas id="pongCanvas" width="800" height="400" style="display: none;"></canvas>
+
+<script>
+    const canvas = document.getElementById("pongCanvas");
+    const ctx = canvas.getContext("2d");
+    const menu = document.getElementById("menu");
+    const scoreDiv = document.getElementById("score");
+
+    const player = {
+        x: 10,
+        y: canvas.height / 2 - 50,
+        width: 10,
+        height: 100,
+        color: "white",
+        dy: 0,
+        speed: 4
+    };
+
+    const cpu = {
+        x: canvas.width - 20,
+        y: canvas.height / 2 - 50,
+        width: 10,
+        height: 100,
+        color: "white",
+        dy: 0,
+        speed: 4,
+        learningRate: 0.01, // Öğrenme hızı
+        previousBallY: canvas.height / 2,
+        errors: []
+    };
+
+    const ball = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 10,
+        speed: 4,
+        dx: 4,
+        dy: 4,
+        color: "white"
+    };
+
+    let playerScore = 0;
+    let cpuScore = 0;
+
+    function drawRect(x, y, w, h, color) {
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, w, h);
+    }
+
+    function drawCircle(x, y, radius, color) {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    function update() {
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+
+        if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+            ball.dy *= -1;
+        }
+
+        if (ball.x + ball.radius > canvas.width) {
+            playerScore++;
+            recordError();
+            resetBall();
+        } else if (ball.x - ball.radius < 0) {
+            cpuScore++;
+            recordError();
+            resetBall();
+        }
+
+        if (collision(player, ball)) {
+            ball.dx *= -1;
+        } else if (collision(cpu, ball)) {
+            ball.dx *= -1;
+        }
+
+        moveCpu();
+
+        player.y += player.dy;
+        player.y = Math.max(Math.min(player.y, canvas.height - player.height), 0);
+        cpu.y = Math.max(Math.min(cpu.y, canvas.height - cpu.height), 0);
+
+        document.getElementById('playerScore').innerText = playerScore;
+        document.getElementById('cpuScore').innerText = cpuScore;
+    }
+
+    function collision(paddle, ball) {
+        return paddle.x < ball.x + ball.radius &&
+               paddle.x + paddle.width > ball.x - ball.radius &&
+               paddle.y < ball.y + ball.radius &&
+               paddle.y + paddle.height > ball.y - ball.radius;
+    }
+
+    function resetBall() {
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+        ball.dx *= -1;
+    }
+
+    function moveCpu() {
+        const targetY = ball.y - cpu.height / 2;
+        const error = Math.abs(targetY - cpu.y);
+        cpu.errors.push(error);
+
+        if (cpu.errors.length > 100) {
+            cpu.errors.shift(); // Son 100 hatayı sakla
+        }
+
+        const averageError = cpu.errors.reduce((a, b) => a + b, 0) / cpu.errors.length;
+
+        // CPU'nun hedefe yaklaşma hareketi
+        if (cpu.y + cpu.height / 2 < targetY) {
+            cpu.y += cpu.speed;
+        } else if (cpu.y + cpu.height / 2 > targetY) {
+            cpu.y -= cpu.speed;
+        }
+
+        // Öğrenme ve hız ayarlama
+        cpu.speed = Math.max(2, cpu.speed - cpu.learningRate * averageError);
+    }
+
+    function recordError() {
+        // Error hesaplama ve kaydetme (sıfırdan öğrenme örneği)
+    }
+
+    function gameLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawRect(0, 0, canvas.width, canvas.height, "black");
+
+        drawRect(player.x, player.y, player.width, player.height, player.color);
+        drawRect(cpu.x, cpu.y, cpu.width, cpu.height, cpu.color);
+        drawCircle(ball.x, ball.y, ball.radius, ball.color);
+
+        update();
+
+        requestAnimationFrame(gameLoop);
+    }
+
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "ArrowUp") {
+            player.dy = -player.speed;
+        } else if (e.key === "ArrowDown") {
+            player.dy = player.speed;
+        }
+    });
+
+    document.addEventListener("keyup", function(e) {
+        if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+            player.dy = 0;
+        }
+    });
+
+    function movePlayer() {
+        player.y += player.dy;
+    }
+
+    setInterval(movePlayer, 1000 / 60);
+
+    function startGame() {
+        menu.style.display = 'none';
+        scoreDiv.style.display = 'block';
+        canvas.style.display = 'block';
+
+        gameLoop();
+    }
+</script>
+
+</body>
+</html>

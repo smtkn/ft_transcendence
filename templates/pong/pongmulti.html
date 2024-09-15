@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çok Oyunculu Pong Oyunu</title>
+    <style>
+        canvas {
+            background: black;
+            display: block;
+            margin: 0 auto;
+        }
+        #score {
+            text-align: center;
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div id="score">Score: <span id="playerScore">0</span> - <span id="cpuScore">0</span></div>
+<canvas id="pongCanvas" width="800" height="400"></canvas>
+
+<script>
+    const canvas = document.getElementById("pongCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const player = {
+        x: 10,
+        y: canvas.height / 2 - 50,
+        width: 10,
+        height: 100,
+        color: "white",
+        dy: 0,
+        speed: 4
+    };
+
+    const ball = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 10,
+        speed: 4,
+        dx: 4,
+        dy: 4,
+        color: "white"
+    };
+
+    const socket = new WebSocket('ws://' + window.location.host + '/ws/pong/');
+
+    socket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        const playerId = data.player_id;
+
+        if (playerId === 'player1') {
+            player.y = data.player_y;
+        }
+
+        // Update the ball position based on game logic here if needed
+    };
+
+    function sendMovement() {
+        socket.send(JSON.stringify({
+            player_id: 'player1',
+            player_y: player.y
+        }));
+    }
+
+    function drawRect(x, y, w, h, color) {
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, w, h);
+    }
+
+    function drawCircle(x, y, radius, color) {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    function update() {
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+
+        if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+            ball.dy *= -1;
+        }
+
+        // Implement collision detection and scoring here
+
+        // Send movement updates
+        sendMovement();
+    }
+
+    function gameLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawRect(0, 0, canvas.width, canvas.height, "black");
+        drawRect(player.x, player.y, player.width, player.height, player.color);
+        drawCircle(ball.x, ball.y, ball.radius, ball.color);
+
+        update();
+
+        requestAnimationFrame(gameLoop);
+    }
+
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "ArrowUp") {
+            player.dy = -player.speed;
+        } else if (e.key === "ArrowDown") {
+            player.dy = player.speed;
+        }
+    });
+
+    document.addEventListener("keyup", function(e) {
+        if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+            player.dy = 0;
+        }
+    });
+
+    function movePlayer() {
+        player.y += player.dy;
+        player.y = Math.max(Math.min(player.y, canvas.height - player.height), 0);
+    }
+
+    setInterval(movePlayer, 1000 / 60);
+    gameLoop();
+</script>
+
+</body>
+</html>
