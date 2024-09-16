@@ -500,10 +500,11 @@
     
     <!-- Required Js -->
     <script src="{% static "/js/popper.min.js" %}"></script>
-    <script src="{% static "/js/simplebar.min.js" %}"></script>
     <script src="{% static "/js/bootstrap.min.js" %}"></script>
     <script src="{% static "/js/pcoded.js" %}"></script>
     <script src="{% static "/js/feather.min.js" %}"></script>
+
+    {% block custom_js %}{% endblock custom_js %}
 
     <script>
       layout_change("light");

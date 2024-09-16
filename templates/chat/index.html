@@ -1,4 +1,37 @@
 {% extends "dashboard/base.html" %} {% load static %} {% block content %}
+<style>
+    /* Scrollbar için stil tanımlamaları */
+    ::-webkit-scrollbar {
+        width: 8px; /* Scrollbar genişliği */
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent; /* Scrollbar izinin arka planı şeffaf */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.5); /* Scrollbar'ın kaydırıcı kısmının arka planı */
+        border-radius: 10px; /* Scrollbar kaydırıcısının köşe yuvarlama */
+    }
+
+    /* Kaydırıcıya hover efekti */
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.7); /* Kaydırıcıya hover yapıldığında arka plan rengi */
+    }
+
+    /* Firefox için scroll bar stili */
+    * {
+        scrollbar-width: thin; /* Scrollbar'ın ince görünmesi */
+        scrollbar-color: rgba(0, 0, 0, 0.5) transparent; /* Kaydırıcı ve izinin renkleri */
+    }
+
+    /* Daha geniş görünüm için */
+    @supports (scrollbar-color: rgba(0, 0, 0, 0.5) transparent) {
+        * {
+            scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+        }
+    }
+</style>
 <div class="pc-container">
     <div class="pc-content">
         <!-- [ Main Content ] start -->
@@ -41,7 +74,7 @@
                                                     </form>
                                                 </div>
                                                 <div class="scroll-block">
-                                                    <div class="card-body p-0">
+                                                    <div class="card-body p-0" style="height: 100%; overflow: hidden scroll">
                                                         <div class="list-group list-group-flush">
                                                             <div class="list-group-item list-group-item-action p-3">
                                                                 <div class="d-flex align-items-center">
@@ -294,7 +327,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="card-body p-0 m-0 mt-md-5">
+                                                <div class="card-body p-0 m-0 mt-md-4">
                                                     <div class="list-group list-group-flush">
                                                         <span href="#" class="list-group-item border-0"> </span>
                                                         <span href="#" class="list-group-item"> </span>
@@ -383,7 +416,7 @@
                                 </div>
                                 <div class="card bg-body shadow-none mb-0">
                                     <div class="scroll-block chat-message">
-                                        <div class="card-body">
+                                        <div class="card-body" style="height: 100%; overflow: hidden scroll">
                                             <div class="message-out">
                                                 <div class="d-flex align-items-end flex-column">
                                                     <p class="mb-1 text-muted"><small>9h ago</small></p>
