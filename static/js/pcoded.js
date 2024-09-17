@@ -99,21 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   // Horizontal menu click js end
 
-  // header dropdown scrollbar start
-  if (!!document.querySelector('.header-notification-scroll')) {
-    new SimpleBar(document.querySelector('.header-notification-scroll'));
-  }
 
-  if (!!document.querySelector('.profile-notification-scroll')) {
-    new SimpleBar(document.querySelector('.profile-notification-scroll'));
-  }
-  // header dropdown scrollbar end
-
-  // component scrollbar start
-  if (!!document.querySelector('.component-list-card .card-body')) {
-    new SimpleBar(document.querySelector('.component-list-card .card-body'));
-  }
-  // component- dropdown scrollbar end
 
   var sidebar_hide = document.querySelector('#sidebar-hide');
   if (sidebar_hide) {
@@ -145,11 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
 // Menu click start
 function add_scroller() {
   menu_click();
-  // Menu scrollbar start
-  if (!!document.querySelector('.navbar-content')) {
-    new SimpleBar(document.querySelector('.navbar-content'));
-  }
-  // Menu scrollbar end
 }
 
 // Menu click start
@@ -374,9 +355,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   }
-  if (!!document.querySelector('.pct-body')) {
-    new SimpleBar(document.querySelector('.pct-body'));
-  }
+
 
   var layout_reset = document.querySelector('#layoutreset');
   if (layout_reset) {
