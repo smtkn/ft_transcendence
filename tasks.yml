@@ -1,0 +1,15 @@
+- TÜM TEMPLATE KISIMLARI "templates" KLASÖRÜNDE BULUNACAK. HİYERARŞİK OLARAK KLASÖRLENMİŞ OLACAK. 
+- - ÖRNEĞİN /templates/adminpanel/index.html
+
+- HERKES KENDİ BRANCHİNDE ÇALIŞACAK, BRANCH İSMİ KENDİ İSMİNİZ OLACAK.
+- Örnek branch değiştirmek için > `git checkout -b samet`
+- - ÖRNEĞİN samet İÇİN "samet" BRANCHİ OLUŞTURULACAK.
+- her çalışmaya başlamadan önce masterdeki değişiklikleri kendi branchinize çekmek zorundasınız.
+- - 'git checkout master'
+- - 'git pull origin master'
+- - 'git checkout samet' # burdaki samet kısmı kendi branchiniz olacak.
+- - 'git merge master'
+
+
+- HERKESİN KENDİ ENV DOSYALARI OLACAK, .env.example DOSYASINI KOPYALAYIP .env OLARAK KAYIT EDİP İÇERİSİNİ DOLDURACAKSINIZ.
+- - DOLDURULMADIĞI HALDE HATA VERMEMESİ ÜZERİNE KURULDU, DOLDURULDUĞU TAKTİRDE O KISIMLAR AKTİFLEŞECEK.
