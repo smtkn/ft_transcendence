@@ -25,13 +25,8 @@ services:
       - path: .env
         required: false
     command: >
-      sh -c "while ! pg_isready -h 'postgres' -U ${POSTGRES_USER}; do
-          echo 'Waiting for postgres to be ready...'
-          sleep 1
-      done;
-      echo 'Postgres is ready';
-      python manage.py migrate &&
-      gunicorn hesapvitrini.asgi:application --bind 0.0.0.0:8000 -w 4 -k hesapvitrini.workers.UvicornWorker"
+      sh -c "python manage.py migrate && 
+      gunicorn transcendence.asgi:application --bind 0.0.0.0:8000 -w 4 -k transcendence.workers.UvicornWorker"
       
     restart: always
     ports:
