@@ -2,7 +2,129 @@
 <div class="pc-container">
     <div class="pc-content">
         <!-- [ Main Content ] start -->
-        <h1>Merhaba</h1>
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Game Settings</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="my-4" role="group">
+                            <h3>Score to Win</h3>
+                            <input type="radio" class="btn-check" id="sw1" name="btn_radio1" />
+                            <label class="btn btn-outline-secondary" for="sw1">5</label>
+                            <input type="radio" class="btn-check" id="sw2" name="btn_radio1" />
+                            <label class="btn btn-outline-secondary" for="sw2">10</label>
+                            <input type="radio" class="btn-check" id="sw3" name="btn_radio1" />
+                            <label class="btn btn-outline-secondary" for="sw3">15</label>
+                            <input type="radio" class="btn-check" id="sw4" name="btn_radio1" />
+                            <label class="btn btn-outline-secondary" for="sw4">20</label>
+                            <input type="radio" class="btn-check" id="sw5" name="btn_radio1" />
+                            <label class="btn btn-outline-secondary" for="sw5">25</label>
+                        </div>
+                        <div class="my-4" role="group">
+                            <h3>Who Serves After Score</h3>
+                            <input type="radio" class="btn-check" id="as1" name="btn_radio2" />
+                            <label class="btn btn-outline-secondary" for="as1">Radio 1</label>
+                            <input type="radio" class="btn-check" id="as2" name="btn_radio2" />
+                            <label class="btn btn-outline-secondary" for="as2">Radio 2</label>
+                            <input type="radio" class="btn-check" id="as3" name="btn_radio2" />
+                            <label class="btn btn-outline-secondary" for="as3">Radio 3</label>
+                        </div>
+                        <div class="my-4" role="group">
+                            <h3>Bot Level</h3>
+                            <input type="radio" class="btn-check" id="bt1" name="btn_radio3" />
+                            <label class="btn btn-outline-secondary" for="bt1">Radio 1</label>
+                            <input type="radio" class="btn-check" id="bt2" name="btn_radio3" />
+                            <label class="btn btn-outline-secondary" for="bt2">Radio 2</label>
+                            <input type="radio" class="btn-check" id="bt3" name="btn_radio3" />
+                            <label class="btn btn-outline-secondary" for="bt3">Radio 3</label>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="card-header">
+                        <h2>Map Settings</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <input type="radio" class="btn-check" id="map1" name="btn_radio4" />
+                            <label class="btn btn-outline-secondary overflow-hidden border-0" for="map1">
+                                <img class="img-thumbnail" src="{% static "/images/admin/img-course-1.png" %}" alt="">
+                                <p class="m-0 mt-2">Map1</p>
+                            </label>
+                            <input type="radio" class="btn-check" id="map2" name="btn_radio4" />
+                            <label class="btn btn-outline-secondary overflow-hidden border-0" for="map2">
+                                <img class="img-thumbnail" src="{% static "/images/admin/img-course-2.png" %}" alt="">
+                                <p class="m-0 mt-2">Map2</p>
+                            </label>
+                            <input type="radio" class="btn-check" id="map3" name="btn_radio4" />
+                            <label class="btn btn-outline-secondary overflow-hidden border-0" for="map3">
+                                <img class="img-thumbnail" src="{% static "/images/admin/img-course-3.png" %}" alt="">
+                                <p class="m-0 mt-2">Map3</p>
+                            </label>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2 justify-content-end mt-4">
+                            <button type="button" class="btn btn-warning btn-lg">Single Game</button>
+                            <button type="button" class="btn btn-primary btn-lg ">Online Game</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="card table-card">
+                    <div class="card-header">
+                        <h5>Arkadaş Listesi</h5>
+                    </div>
+                    <div class="card-body py-3 px-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-borderless mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{% static "/images/user/avatar-4.jpg" %}" alt="" class="img-fluid wid-30 rounded-1">
+                                                <h6 class="mb-0 ms-2">Adeline</h6>
+                                            </div>
+                                        </td>
+                                        <td class="text-center gap-3 d-flex justify-content-center">
+                                            <button class="btn btn-light-warning"><i class="bi bi-controller fs-4"></i></button>
+                                            <button type="button" class="btn btn-light-info"><i class="bi bi-chat-dots fs-4"></i></button>
+                                            <button type="button" class="btn btn-light-danger"><i class="bi bi-trash fs-4"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{% static "/images/user/avatar-5.jpg" %}" alt="" class="img-fluid wid-30 rounded-1">
+                                                <h6 class="mb-0 ms-2">Lazaro</h6>
+                                            </div>
+                                        </td>
+                                        <td class="text-center gap-3 d-flex justify-content-center">
+                                            <button class="btn btn-light-warning"><i class="bi bi-controller fs-4"></i></button>
+                                            <button type="button" class="btn btn-light-info"><i class="bi bi-chat-dots fs-4"></i></button>
+                                            <button type="button" class="btn btn-light-danger"><i class="bi bi-trash fs-4"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{% static "/images/user/avatar-2.jpg" %}" alt="" class="img-fluid wid-30 rounded-1">
+                                                <h6 class="mb-0 ms-2">John Doe</h6>
+                                            </div>
+                                        </td>
+                                        <td class="text-center gap-3 d-flex justify-content-center">
+                                            <button class="btn btn-light-warning"><i class="bi bi-controller fs-4"></i></button>
+                                            <button type="button" class="btn btn-light-info"><i class="bi bi-chat-dots fs-4"></i></button>
+                                            <button type="button" class="btn btn-light-danger"><i class="bi bi-trash fs-4"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- [ Main Content ] end -->
     </div>
 </div>
