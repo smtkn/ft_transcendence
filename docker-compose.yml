@@ -4,7 +4,7 @@ services:
     image: postgres:latest
     container_name: postgres
     env_file:
-      - path: .env
+      - path: ".env"
         required: false
     ports:
       - "5432:5432"
@@ -22,7 +22,7 @@ services:
     volumes:
       - .:/api
     env_file:
-      - path: .env
+      - path: ".env"
         required: false
     command: >
       sh -c "python manage.py migrate && 
