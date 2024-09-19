@@ -2,8 +2,14 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'home/home.html')
+def login(request):
+    return render(request, 'home/login.html')
 
-def d(request):
-    return render(request, 'home/dashboard.html')
+def register(request):
+    return render(request, 'home/register.html')
+
+def forgotPassword(request):
+    return render(request, 'home/forgot-password.html')
+
+def resetPassword(request):
+    return render(request, 'home/reset-password.html')

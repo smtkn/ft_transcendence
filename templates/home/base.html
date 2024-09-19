@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <!-- [Head] start -->
+    <head>
+        <title>{% block title%}PONG Game{% endblock title%}</title>
+        <!-- [Meta] -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="42 ft_transcendence" />
+        <meta name="author" content="MASS Team" />
+
+        <!-- [Favicon] icon -->
+        <link rel="icon" href="{% static "/images/favicon.svg" %}" type="image/x-icon" />
+        <!-- [Google Font : Public Sans] icon -->
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+        <!-- [phosphor Icons] https://phosphoricons.com/ -->
+        <link rel="stylesheet" href="{% static "/fonts/phosphor/duotone/style.css" %}" /> <link rel="stylesheet" href="{% static "/fonts/bootstrap-icons/font/bootstrap-icons.css" %}" />
+        <!-- [Bootstrap CSS Files] -->
+        <link rel="stylesheet" href="{% static "/css/bootstrap.css" %}" id="main-style-link" /> <link rel="stylesheet" href="{% static "/css/style-preset.css" %}" />
+    </head>
+    <!-- [Head] end -->
+    <!-- [Body] Start -->
+
+    <body data-pc-preset="preset-1" data-pc-sidebar-theme="light" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme="light">
+        <!-- [ Pre-loader ] start -->
+        <div class="loader-bg">
+            <div class="loader-track">
+                <div class="loader-fill"></div>
+            </div>
+        </div>
+        <!-- [ Pre-loader ] End -->
+        {% block content_home %}
+        {% endblock content_home %}
+        <!-- [ Main Content ] end -->
+        <!-- Required Js -->
+        <script src="{% static "/js/popper.min.js" %}"></script>
+        <script src="{% static "/js/bootstrap.min.js" %}"></script>
+        <script src="{% static "/js/pcoded.js" %}"></script>
+        <script src="{% static "/js/feather.min.js" %}"></script>
+
+        <script>
+            layout_change("light");
+        </script>
+
+        <script>
+            layout_sidebar_change("light");
+        </script>
+
+        <script>
+            change_box_container("false");
+        </script>
+
+        <script>
+            layout_caption_change("true");
+        </script>
+
+        <script>
+            layout_rtl_change("false");
+        </script>
+
+        <script>
+            preset_change("preset-1");
+        </script>
+    </body>
+    <!-- [Body] end -->
+
+    <!-- Mirrored from html.phoenixcoded.net/light-able/bootstrap/pages/login-v1.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 22 Jul 2024 12:05:35 GMT -->
+</html>
