@@ -3,7 +3,7 @@
 <html lang="tr">
   <!-- [Head] start -->
   <head>
-    <title>PONG Game</title>
+    <title> {% block title%}PONG Game{% endblock title%}</title>
     <!-- [Meta] -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
@@ -338,16 +338,10 @@
                         </div>
                       </li>
                       <li class="list-group-item">
-                        <a href="#" class="dropdown-item">
+                        <a href="{% url "profiles" %}" class="dropdown-item">
                           <span class="d-flex align-items-center">
                             <i class="ph-duotone ph-user-circle"></i>
                             <span>Edit profile</span>
-                          </span>
-                        </a>
-                        <a href="#" class="dropdown-item">
-                          <span class="d-flex align-items-center">
-                            <i class="ph-duotone ph-gear-six"></i>
-                            <span>Settings</span>
                           </span>
                         </a>
                       </li>

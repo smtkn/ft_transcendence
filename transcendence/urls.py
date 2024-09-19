@@ -26,4 +26,5 @@ urlpatterns = [
     path('chat/', include('chat.urls')),
     path('leaderboard/', include('leaderboard.urls')),
     path('game/', include('game.urls')),
+    path('profile/', include('profiles.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

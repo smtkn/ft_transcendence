@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'chat.apps.ChatConfig',
     'leaderboard.apps.LeaderboardConfig',
+    'profiles.apps.ProfilesConfig',
     'game.apps.GameConfig',
     'django.contrib.admin',
     'django.contrib.auth',
